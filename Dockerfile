@@ -1,8 +1,8 @@
-FROM golang:1.18 AS build
+FROM golang:1.18.1 AS build
 RUN mkdir /see-build
 ADD . /see-build/
 WORKDIR /see-build
-RUN CGO_ENABLED=0 go build -o solaredge-exporter .
+RUN CGO_ENABLED=0 go build -buildvcs=false -o solaredge-exporter .
 
 FROM alpine:latest
 ENV INVERTER_ADDRESS 192.168.1.189
